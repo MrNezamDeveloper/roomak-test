@@ -28,14 +28,13 @@ const Login = () => {
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();
-
     setLoading(true);
     axios
       .post("https://dummyjson.com/auth/login", data)
       .then((res) => {
         toast("ورود موفقیت آمیز بود");
         window.localStorage.setItem("token", `${res.data.token}`);
-        navigate("/list");
+        navigate("/list", { replace: true  });
       })
       .catch(() => {
         toast("نام کاربری یا رمز عبور صحیح نمی باشد");
